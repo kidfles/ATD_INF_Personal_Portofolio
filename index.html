@@ -267,7 +267,8 @@
                                 <div class="text-purple-400">class <span class="text-yellow-300">PdfReportService</span>
                                     {</div>
                                 <div class="pl-4 text-slate-300"><span class="text-purple-400">public function</span>
-                                    <span class="text-blue-400">generate</span>($data) {</div>
+                                    <span class="text-blue-400">generate</span>($data) {
+                                </div>
                                 <div class="pl-8 text-slate-500 mt-2">// 1. Process Chart Data</div>
                                 <div class="pl-8 text-slate-300">$charts = <span
                                         class="text-red-400">$this</span>->renderCharts($data);</div>
@@ -275,12 +276,13 @@
                                 <div class="pl-8 text-slate-300">$pdf = <span class="text-yellow-300">new</span> FPDF();
                                 </div>
                                 <div class="pl-8 text-slate-300">$pdf->Output(<span class="text-green-300">'F'</span>,
-                                    <span class="text-green-300">'report.pdf'</span>);</div>
+                                    <span class="text-green-300">'report.pdf'</span>);
+                                </div>
                                 <div class="pl-4 text-slate-300">}</div>
                                 <div class="text-purple-400">}</div>
                             </div>
                             <div
-                                class="absolute -bottom-6 -right-6 bg-brand-600 text-white p-5 rounded-lg shadow-xl border border-brand-500">
+                                class="absolute -bottom-6 -right-[0.3rem] bg-brand-600 text-white p-5 rounded-lg shadow-xl border border-brand-500">
                                 <div class="text-xs font-bold uppercase opacity-80 mb-1">Resultaat</div>
                                 <div class="font-bold text-xl">90% Tijdsbesparing</div>
                             </div>
@@ -368,7 +370,7 @@
                                 </div>
                             </div>
                             <div
-                                class="absolute -bottom-6 -right-6 bg-emerald-600 text-white p-5 rounded-lg shadow-xl border border-emerald-500">
+                                class="absolute -bottom-6 -right-[0.3rem] bg-emerald-600 text-white p-5 rounded-lg shadow-xl border border-emerald-500">
                                 <div class="text-xs font-bold uppercase opacity-80 mb-1">Impact</div>
                                 <div class="font-bold text-xl">Data-Driven Planning</div>
                             </div>
@@ -453,7 +455,7 @@
                                 </div>
                             </div>
                             <div
-                                class="absolute -bottom-6 -right-6 bg-purple-600 text-white p-5 rounded-lg shadow-xl border border-purple-500">
+                                class="absolute -bottom-6 -right-[0.3rem] bg-purple-600 text-white p-5 rounded-lg shadow-xl border border-purple-500">
                                 <div class="text-xs font-bold uppercase opacity-80 mb-1">Focus</div>
                                 <div class="font-bold text-xl">Schaalbaarheid</div>
                             </div>
