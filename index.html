@@ -201,9 +201,10 @@
             </div>
 
             <div id="projectSlider"
-                class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar gap-8">
+                class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar gap-8 py-8 px-[5vw] md:px-0">
 
-                <article class="min-w-full snap-center grid lg:grid-cols-2 gap-16 items-center">
+                <article
+                    class="project-card min-w-full snap-center grid lg:grid-cols-2 gap-16 items-center transition-all duration-300 ease-out">
                     <div class="order-2 lg:order-1">
                         <div
                             class="inline-block px-4 py-1.5 bg-brand-900/50 border border-brand-700/50 text-blue-200 rounded-full text-sm font-semibold mb-8 backdrop-blur-sm">
@@ -288,7 +289,8 @@
                 </article>
 
 
-                <article class="min-w-full snap-center grid lg:grid-cols-2 gap-16 items-center">
+                <article
+                    class="project-card min-w-full snap-center grid lg:grid-cols-2 gap-16 items-center transition-all duration-300 ease-out">
                     <div class="order-2 lg:order-1">
                         <div
                             class="inline-block px-4 py-1.5 bg-emerald-900/50 border border-emerald-700/50 text-emerald-200 rounded-full text-sm font-semibold mb-8 backdrop-blur-sm">
@@ -364,15 +366,6 @@
                                         <div class="bg-red-500 w-[60%] h-full"></div>
                                     </div>
                                 </div>
-                                <div class="bg-slate-900 p-3 rounded border-l-4 border-emerald-500">
-                                    <div class="flex justify-between text-slate-300">
-                                        <span>WOENSDAG</span>
-                                        <span class="text-emerald-400">OPTIMAAL</span>
-                                    </div>
-                                    <div class="w-full bg-slate-700 h-1.5 mt-2 rounded-full overflow-hidden">
-                                        <div class="bg-emerald-500 w-[100%] h-full"></div>
-                                    </div>
-                                </div>
                             </div>
                             <div
                                 class="absolute -bottom-6 -right-6 bg-emerald-600 text-white p-5 rounded-lg shadow-xl border border-emerald-500">
@@ -384,7 +377,8 @@
                 </article>
 
 
-                <article class="min-w-full snap-center grid lg:grid-cols-2 gap-16 items-center">
+                <article
+                    class="project-card min-w-full snap-center grid lg:grid-cols-2 gap-16 items-center transition-all duration-300 ease-out">
                     <div class="order-2 lg:order-1">
                         <div
                             class="inline-block px-4 py-1.5 bg-purple-900/50 border border-purple-700/50 text-purple-200 rounded-full text-sm font-semibold mb-8 backdrop-blur-sm">
@@ -477,6 +471,68 @@
 
         </div>
     </section>
+
+    <script>
+        // 1. Functie voor de knoppen
+        function slideProjects(direction) {
+            const container = document.getElementById('projectSlider');
+            const scrollAmount = container.offsetWidth;
+
+            if (direction === 'prev') {
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        // 2. Het "Fade & Scale" effect tijdens scrollen
+        const slider = document.getElementById('projectSlider');
+        const cards = document.querySelectorAll('.project-card');
+
+        // Voer uit op scroll
+        slider.addEventListener('scroll', () => {
+            requestAnimationFrame(updateCards);
+        });
+
+        // Voer uit bij laden pagina (voor initiële staat)
+        window.addEventListener('load', updateCards);
+        window.addEventListener('resize', updateCards);
+
+        function updateCards() {
+            const centerLine = slider.scrollLeft + (slider.offsetWidth / 2);
+
+            cards.forEach(card => {
+                const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+                const distance = Math.abs(centerLine - cardCenter);
+
+                // Max afstand voordat hij begint te faden (halve schermbreedte)
+                const maxDistance = slider.offsetWidth / 1.5;
+
+                // Bereken opacity (1 = midden, 0.3 = zijkant)
+                let opacity = 1 - (distance / maxDistance);
+                opacity = Math.max(0.2, Math.min(1, opacity)); // Clamp tussen 0.2 en 1
+
+                // Bereken scale (1 = midden, 0.9 = zijkant)
+                let scale = 1 - (distance / maxDistance) * 0.2;
+                scale = Math.max(0.9, Math.min(1, scale));
+
+                // Pas styles toe
+                card.style.opacity = opacity;
+                card.style.transform = `scale(${scale})`;
+            });
+        }
+    </script>
+
+    <style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 
     <script>
         function slideProjects(direction) {
